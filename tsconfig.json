@@ -1,0 +1,21 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "declaration": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "strict": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "outDir": "./out",
+    "rootDir": "./src",
+    "target": "es2020",
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules/**/*",
+    "out/**/*",
+    "**/*.spec.ts",
+  ]
+}
