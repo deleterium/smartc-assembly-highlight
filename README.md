@@ -10,11 +10,11 @@ npm install smartc-assembly-highlight
 # Usage
 Import the library
 ```
-import sah from 'smartc-assembly-highlight';
+import sah from 'smartc-assembly-highlight/src/index';
 ```
 
 Choose the text to be prepended in all output (preAll), prepended in each line (preLine), appended in each line (postLine) and appended in all output (postAll).
-In preLine and postLine it is possible to add the string `%line` that will be replaced for the line number.
+In preLine and postLine it is possible to add the string `%line%` that will be replaced for the line number.
 You can choose to change the class name for each type of attribute.
 This is the default value:
 ```js
@@ -41,7 +41,7 @@ To color only one line, use the function `colorLine(justOneLine)`. This function
 The following example will create a table and show lines number:
 
 ```js
-import sah from 'smartc-assembly-highlight';
+import sah from 'smartc-assembly-highlight/src/index'
 
 const sourceCode = `^declare a
 
@@ -57,4 +57,18 @@ sah.Config.postAll = '</tbody></table>';
 
 const highlighted = sah.colorText(sourceCode);
 
+```
+
+The following stylesheet is recomended:
+```css
+.asmInstruction { color: mediumblue; }
+.asmVariable { color: purple; }
+.asmComment { color: darkgreen; }
+.asmLabel { color: sienna; }
+.asmNumber { color: red; }
+.asmError { background-color: pink; }
+.asmDirective {
+    color: brown;
+    font-weight: bold;
+}
 ```
