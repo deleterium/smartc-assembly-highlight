@@ -1,5 +1,5 @@
 # SmartC Assembly Highlight
-Module to highlight SmartC assembly text into html with highlight
+Converts SmartC assembly source code into HTML with syntax highlighting
 
 # Setup
 This library can be obtained through npm:
@@ -10,7 +10,7 @@ npm install smartc-assembly-highlight
 # Usage
 Import the library
 ```
-import sah from 'smartc-assembly-highlight/src/index';
+import sah from 'smartc-assembly-highlight';
 ```
 
 Choose the text to be prepended in all output (preAll), prepended in each line (preLine), appended in each line (postLine) and appended in all output (postAll).
@@ -41,7 +41,7 @@ To color only one line, use the function `colorLine(justOneLine)`. This function
 The following example will create a table and show lines number:
 
 ```js
-import sah from 'smartc-assembly-highlight/src/index'
+import sah from 'smartc-assembly-highlight'
 
 const sourceCode = `^declare a
 
@@ -71,4 +71,13 @@ The following stylesheet is recomended:
     color: brown;
     font-weight: bold;
 }
+```
+
+# Browser usage
+You can use jsdelivr.net and import the es2020 module:
+
+```html
+<script type="module">
+import sah from 'https://cdn.jsdelivr.net/npm/smartc-assembly-highlight/dist/index.js';
+</script>
 ```

@@ -1,11 +1,14 @@
 {
   "name": "smartc-assembly-highlight",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Converts SmartC assembly source code into html with syntax highlighting",
-  "main": "./out/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
     "lint": "npx eslint src/*.ts",
     "build": "npx tsc",
+    "prepublish": "npx eslint src/*.ts && npx jest && npx tsc",
     "test:cover": "npx jest --coverage",
     "test": "npx jest"
   },
