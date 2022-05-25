@@ -128,6 +128,7 @@ const allowedFunctions = [
     { fnCode: 0x030a, fnName: 'B_to_Address_of_Tx_in_A' },
     { fnCode: 0x030b, fnName: 'B_to_Address_of_Creator' },
     { fnCode: 0x030c, fnName: 'Get_Code_Hash_Id' },
+    { fnCode: 0x030d, fnName: 'B_To_Assets_Of_Tx_In_A' },
     { fnCode: 0x0400, fnName: 'get_Current_Balance' },
     { fnCode: 0x0401, fnName: 'get_Previous_Balance' },
     { fnCode: 0x0402, fnName: 'send_to_Address_in_B' },
@@ -142,7 +143,8 @@ const allowedFunctions = [
     { fnCode: 0x040b, fnName: 'Distribute_To_Asset_Holders' },
     { fnCode: 0x040c, fnName: 'Get_Asset_Holders_Count' },
     { fnCode: 0x040d, fnName: 'Get_Activation_Fee' },
-    { fnCode: 0x040e, fnName: 'Put_Last_Block_GSig_In_A' }
+    { fnCode: 0x040e, fnName: 'Put_Last_Block_GSig_In_A' },
+    { fnCode: 0x040f, fnName: 'Get_Asset_Circulating' }
 ]
 
 function toSpan (text: string, classname: string) {
