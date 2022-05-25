@@ -157,7 +157,7 @@ function toSpan (text: string, classname: string) {
  * @function colorLine To convert one line of code
  * @constant Config Options
  */
-export default {
+const sah = {
     Config: {
         preAll: '',
         preLine: '',
@@ -369,4 +369,11 @@ export default {
             return toSpan(asmLine, this.Config.spanErrorClass)
         }
     }
+}
+
+export default sah
+
+if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
+    // @ts-ignore: Browser only
+    window.sah = sah
 }

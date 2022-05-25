@@ -74,10 +74,14 @@ The following stylesheet is recomended:
 ```
 
 # Browser usage
-You can use jsdelivr.net and import the es2020 module:
+You can use jsdelivr.net and import `sah` as global:
 
 ```html
-<script type="module">
-import sah from 'https://cdn.jsdelivr.net/npm/smartc-assembly-highlight/dist/index.js';
-</script>
+<script src='https://cdn.jsdelivr.net/npm/smartc-assembly-highlight/dist/index-min.js'</script>
+```
+
+Then, just use the global variable in your script:
+
+```js
+const highlighted = sah.colorText(sourceCode);
 ```

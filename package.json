@@ -4,10 +4,12 @@
   "description": "Converts SmartC assembly source code into html with syntax highlighting",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "npx eslint src/*.ts",
-    "build": "npx tsc",
+    "build": "npx tsc && node esbuild.config.js",
     "prepublish": "npx eslint src/*.ts && npx jest && npx tsc",
     "test:cover": "npx jest --coverage",
     "test": "npx jest"
@@ -16,6 +18,7 @@
     "@types/jest": "^27.5.1",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
+    "esbuild": "^0.14.39",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "jest": "^28.1.0",
