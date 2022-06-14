@@ -65,7 +65,7 @@ const highlighted = sah.colorText(sourceCode);
 The following stylesheet is recomended:
 ```css
 .asmInstruction { color: mediumblue; }
-.asmBuiltin { color: mediumturquoise; }
+.asmBuiltin { color: teal; }
 .asmVariable { color: purple; }
 .asmComment { color: darkgreen; }
 .asmLabel { color: sienna; }
@@ -81,7 +81,7 @@ The following stylesheet is recomended:
 You can use jsdelivr.net and import `sah` as global:
 
 ```html
-<script src='https://cdn.jsdelivr.net/npm/smartc-assembly-highlight/dist/index-min.js'</script>
+<script src='https://cdn.jsdelivr.net/npm/smartc-assembly-highlight/dist/index-min.js'></script>
 ```
 
 Then, just use the global variable in your script:

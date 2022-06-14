@@ -219,8 +219,13 @@ const sah = {
             return toSpan(parts[1], this.Config.spanDirectiveClass) +
                 toSpan(parts[2], this.Config.spanVariableClass)
         case 0xf4: { // const
-            return toSpan(parts[1], this.Config.spanDirectiveClass) +
-            this.colorLine(parts[2])
+            // remove any preInstruction configured, color and revert.
+            const preInst = this.Config.preInstruction
+            this.Config.preInstruction = ''
+            const ret = toSpan(parts[1], this.Config.spanDirectiveClass) +
+                this.colorLine(parts[2])
+            this.Config.preInstruction = preInst
+            return ret
         }
         case 0xf5: // program
             return toSpan(parts[1], this.Config.spanDirectiveClass) +
