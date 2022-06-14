@@ -161,12 +161,14 @@ const sah = {
     Config: {
         preAll: '',
         preLine: '',
+        preInstruction: '',
         postAll: '',
         postLine: '<br>',
         spanErrorClass: 'asmError',
         spanLabelClass: 'asmLabel',
         spanNumberClass: 'asmNumber',
         spanCommentClass: 'asmComment',
+        spanBuiltinClass: 'asmBuiltin',
         spanVariableClass: 'asmVariable',
         spanDirectiveClass: 'asmDirective',
         spanInstructionClass: 'asmInstruction'
@@ -224,7 +226,8 @@ const sah = {
             return toSpan(parts[1], this.Config.spanDirectiveClass) +
                 parts[2]
         case 0x01:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
                 toSpan(parts[3], this.Config.spanNumberClass)
         case 0x02:
@@ -239,7 +242,8 @@ const sah = {
         case 0x17:
         case 0x18:
         case 0x19:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
                 toSpan(parts[3], this.Config.spanVariableClass)
         case 0x03:
@@ -251,7 +255,8 @@ const sah = {
         case 0x25:
         case 0x26:
         case 0x27:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass)
         case 0x13:
         case 0x28:
@@ -259,15 +264,18 @@ const sah = {
         case 0x2a:
         case 0x30:
         case 0x7f:
-            return toSpan(parts[0], this.Config.spanInstructionClass)
+            return this.Config.preInstruction +
+                toSpan(parts[0], this.Config.spanInstructionClass)
         case 0x0e:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
                 parts[3] +
                 toSpan(parts[4], this.Config.spanVariableClass) +
                 parts[5]
         case 0x0f:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
                 parts[3] +
                 toSpan(parts[4], this.Config.spanVariableClass) +
@@ -275,13 +283,15 @@ const sah = {
                 toSpan(parts[6], this.Config.spanVariableClass) +
                 parts[7]
         case 0x14:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 parts[2] +
                 toSpan(parts[3], this.Config.spanVariableClass) +
                 parts[4] +
                 toSpan(parts[5], this.Config.spanVariableClass)
         case 0x15:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 parts[2] +
                 toSpan(parts[3], this.Config.spanVariableClass) +
                 parts[4] +
@@ -291,11 +301,13 @@ const sah = {
         case 0x12:
         case 0x1a:
         case 0x2b:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanLabelClass)
         case 0x1b:
         case 0x1e:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
                 toSpan(parts[3], this.Config.spanLabelClass)
         case 0x1f:
@@ -304,64 +316,79 @@ const sah = {
         case 0x22:
         case 0x23:
         case 0x24:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
                 toSpan(parts[3], this.Config.spanVariableClass) +
                 toSpan(parts[4], this.Config.spanLabelClass)
         case 0x2c:
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
                 toSpan(parts[3], this.Config.spanVariableClass) +
                 toSpan(parts[4], this.Config.spanVariableClass)
         case 0x32:
             apiName = parts[2].trim()
             if (allowedFunctions.findIndex(Obj => Obj.fnName === apiName) === -1) {
-                return toSpan(parts[1], this.Config.spanInstructionClass) +
+                return this.Config.preInstruction +
+                    toSpan(parts[1], this.Config.spanInstructionClass) +
                     toSpan(parts[2], this.Config.spanErrorClass)
             }
-            return toSpan(parts[0], this.Config.spanInstructionClass)
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
+                toSpan(parts[2], this.Config.spanBuiltinClass)
         case 0x33:
             apiName = parts[2].trim()
             if (allowedFunctions.findIndex(Obj => Obj.fnName === apiName) === -1) {
-                return toSpan(parts[1], this.Config.spanInstructionClass) +
+                return this.Config.preInstruction +
+                    toSpan(parts[1], this.Config.spanInstructionClass) +
                     toSpan(parts[2], this.Config.spanErrorClass) +
                     toSpan(parts[3], this.Config.spanVariableClass)
             }
-            return toSpan(parts[1] + parts[2], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
+                toSpan(parts[2], this.Config.spanBuiltinClass) +
                 toSpan(parts[3], this.Config.spanVariableClass)
         case 0x34:
             apiName = parts[2].trim()
             if (allowedFunctions.findIndex(Obj => Obj.fnName === apiName) === -1) {
-                return toSpan(parts[1], this.Config.spanInstructionClass) +
+                return this.Config.preInstruction +
+                    toSpan(parts[1], this.Config.spanInstructionClass) +
                     toSpan(parts[2], this.Config.spanErrorClass) +
                     toSpan(parts[3], this.Config.spanVariableClass) +
                     toSpan(parts[4], this.Config.spanVariableClass)
             }
-            return toSpan(parts[1] + parts[2], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
+                toSpan(parts[2], this.Config.spanBuiltinClass) +
                 toSpan(parts[3], this.Config.spanVariableClass) +
                 toSpan(parts[4], this.Config.spanVariableClass)
         case 0x35:
             apiName = parts[3].trim()
             if (allowedFunctions.findIndex(Obj => Obj.fnName === apiName) === -1) {
-                return toSpan(parts[1], this.Config.spanInstructionClass) +
+                return this.Config.preInstruction +
+                    toSpan(parts[1], this.Config.spanInstructionClass) +
                     toSpan(parts[2], this.Config.spanVariableClass) +
                     toSpan(parts[3], this.Config.spanErrorClass)
             }
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
-                toSpan(parts[3], this.Config.spanInstructionClass)
+                toSpan(parts[3], this.Config.spanBuiltinClass)
         case 0x37:
             apiName = parts[3].trim()
             if (allowedFunctions.findIndex(Obj => Obj.fnName === apiName) === -1) {
-                return toSpan(parts[1], this.Config.spanInstructionClass) +
+                return this.Config.preInstruction +
+                    toSpan(parts[1], this.Config.spanInstructionClass) +
                     toSpan(parts[2], this.Config.spanVariableClass) +
                     toSpan(parts[3], this.Config.spanErrorClass) +
                     toSpan(parts[4], this.Config.spanVariableClass) +
                     toSpan(parts[5], this.Config.spanVariableClass)
             }
-            return toSpan(parts[1], this.Config.spanInstructionClass) +
+            return this.Config.preInstruction +
+                toSpan(parts[1], this.Config.spanInstructionClass) +
                 toSpan(parts[2], this.Config.spanVariableClass) +
-                toSpan(parts[3], this.Config.spanInstructionClass) +
+                toSpan(parts[3], this.Config.spanBuiltinClass) +
                 toSpan(parts[4], this.Config.spanVariableClass) +
                 toSpan(parts[5], this.Config.spanVariableClass)
         case 0x36:

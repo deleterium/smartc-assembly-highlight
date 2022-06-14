@@ -15,18 +15,21 @@ import sah from 'smartc-assembly-highlight';
 
 Choose the text to be prepended in all output (preAll), prepended in each line (preLine), appended in each line (postLine) and appended in all output (postAll).
 In preLine and postLine it is possible to add the string `%line%` that will be replaced for the line number.
+Add pad string to indent the lines that are instructions (preInstruction).
 You can choose to change the class name for each type of attribute.
 This is the default value:
 ```js
 const Config = {
     preAll: '',
     preLine: '',
+    preInstruction: '',
     postAll: '',
     postLine: '<br>',
     spanErrorClass: 'asmError',
     spanLabelClass: 'asmLabel',
     spanNumberClass: 'asmNumber',
     spanCommentClass: 'asmComment',
+    spanBuiltinClass: 'asmBuiltin',
     spanVariableClass: 'asmVariable',
     spanDirectiveClass: 'asmDirective',
     spanInstructionClass: 'asmInstruction'
@@ -62,6 +65,7 @@ const highlighted = sah.colorText(sourceCode);
 The following stylesheet is recomended:
 ```css
 .asmInstruction { color: mediumblue; }
+.asmBuiltin { color: mediumturquoise; }
 .asmVariable { color: purple; }
 .asmComment { color: darkgreen; }
 .asmLabel { color: sienna; }
