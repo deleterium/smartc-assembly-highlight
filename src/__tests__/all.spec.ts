@@ -74,4 +74,10 @@ describe('Assembly compilation:', () => {
         const result = sah.colorText(code)
         expect(result).toBe(highlighted)
     })
+    it('should highlight: New undocumented api Get_Account_Balance', () => {
+        const code = 'CLR @a\nFUN @a Get_Account_Balance\nFIN\n'
+        const highlighted = "<div class='table'><div class='div_row'><div class='div_cell_a'>1</div><div class='div_cell_b'><span class='asmInstruction'>CLR </span><span class='asmVariable'>@a</span></div></div><div class='div_row'><div class='div_cell_a'>2</div><div class='div_cell_b'><span class='asmInstruction'>FUN </span><span class='asmVariable'>@a </span><span class='asmBuiltin'>Get_Account_Balance</span></div></div><div class='div_row'><div class='div_cell_a'>3</div><div class='div_cell_b'><span class='asmInstruction'>FIN</span></div></div><div class='div_row'><div class='div_cell_a'>4</div><div class='div_cell_b'></div></div></div>"
+        const result = sah.colorText(code)
+        expect(result).toBe(highlighted)
+    })
 })

@@ -144,7 +144,8 @@ const allowedFunctions = [
     { fnCode: 0x040c, fnName: 'Get_Asset_Holders_Count' },
     { fnCode: 0x040d, fnName: 'Get_Activation_Fee' },
     { fnCode: 0x040e, fnName: 'Put_Last_Block_GSig_In_A' },
-    { fnCode: 0x040f, fnName: 'Get_Asset_Circulating' }
+    { fnCode: 0x040f, fnName: 'Get_Asset_Circulating' },
+    { fnCode: 0x0410, fnName: 'Get_Account_Balance' }
 ]
 
 function toSpan (text: string, classname: string) {
